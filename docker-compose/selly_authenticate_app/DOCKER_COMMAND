@@ -1,0 +1,2 @@
+docker build -t selly-authenticate:1.0 .
+docker run -p 8080:8080 selly-authenticate:1.0
