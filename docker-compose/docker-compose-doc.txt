@@ -1,0 +1,11 @@
+https://techmaster.vn/posts/37806/ket-noi-nhieu-co-so-du-lieu-trong-jpa-su-dung-docker-compose
+
+Notion: 
+
+-- create user table
+CREATE TABLE USER_SELLY (
+ID int,
+NAME VARCHAR(255),
+EMAIL VARCHAR(255),
+PHONE VARCHAR(255)
+);
