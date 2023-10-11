@@ -1,0 +1,4 @@
+
++ http://localhost:8080/sellyAuthenticate/getToken
+{"userName":"+84586099640",
+"passWord":"123456"}
