@@ -17,6 +17,7 @@ services:
       - MYSQL_ROOT_PASSWORD=mysqlpassword
     volumes:
       - .mysql/mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
   selly-authen:
