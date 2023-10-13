@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface SellyLoginService {
 
     public Optional<String> getTokenWithUserAndPass(SellyUser sellyUser);
+
+    public Optional<String> getCurrentToken(SellyUser sellyUser);
 }
