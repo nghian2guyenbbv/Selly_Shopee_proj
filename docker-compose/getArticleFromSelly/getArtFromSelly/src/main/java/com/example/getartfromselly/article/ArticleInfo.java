@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Data
@@ -20,6 +22,9 @@ public class ArticleInfo {
         List<SellyProduct> lisSellyPro = lisPro.stream().map(pr -> {
             SellyProduct sellyProduct = new SellyProduct();
             sellyProduct.setName(pr.getName());
+            List<String> listPhotoUrl = pr.getPhotos().stream().map(Photo::getDimentions).map(dim -> Optional.ofNullable(dim).map(Dimention::getMd).orElse(null))
+                    .map(md -> Optional.ofNullable(md).map(MD::getUrl).orElse(null)).filter(Objects::nonNull).collect(Collectors.toList());
+            sellyProduct.setListPhotoUrl(listPhotoUrl);
             return sellyProduct;
         }).collect(Collectors.toList());
         return ArticleInfoDto.builder().sellyPros(lisSellyPro).build();
