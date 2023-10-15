@@ -1,4 +1,10 @@
 
-+ http://localhost:8080/sellyAuthenticate/getToken
++ http://localhost:8080/sellyAuthenticate/refreshToken
 {"userName":"+84586099640",
 "passWord":"123456"}
+
+
++ docker remove container and image
+  docker stop selly_authen_contain
+  docker rm selly_authen_contain
+  docker rmi docker-compose-selly-authen
