@@ -1,11 +1,15 @@
-package selly.authenticate.token;
+package com.example.getartfromselly.login.token;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Token {
   @JsonProperty("user")

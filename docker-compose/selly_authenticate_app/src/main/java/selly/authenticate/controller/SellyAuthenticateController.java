@@ -27,20 +27,17 @@ public class SellyAuthenticateController {
 
     @PostMapping("/refreshToken")
     public Token getSellyToken(@RequestBody SellyUser sellyUser) {
-        log.info("get token for user: " + sellyUser.getUserName());
         String tokenWithUser = updateTokenService.getTokenWithUser(sellyUser.getUserName());
 
         Optional<String> sellyToken = sellyLoginService.getTokenWithUserAndPass(sellyUser);
         sellyToken.ifPresent(sellyTk->{
             if(!sellyTk.equals(tokenWithUser)){updateTokenService.updateTokenWithUser(sellyUser.getUserName(), sellyTk);}
         });
-        log.info("token is: " + sellyToken);
         return Token.builder().user(sellyUser.getUserName()).token(sellyToken.get()).build();
     }
 
     @PostMapping("/getCurrentToken")
     public Token getTokenFromDb(@RequestBody SellyUser sellyUser){
-        log.info("get current token from db");
         Optional<String> currentToken = sellyLoginService.getCurrentToken(sellyUser);
         return Token.builder().user(sellyUser.getUserName()).token(currentToken.orElse(NO_TOKEN)).build();
     }
