@@ -8,8 +8,8 @@ services:
       - "6379:6379"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-networks:
-      - mynetwork
+    networks:
+          - mynetwork
   mysql:
     image: mysql:latest
     container_name: mysql_contain
@@ -22,8 +22,8 @@ networks:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
-networks:
-      - mynetwork
+    networks:
+          - mynetwork
   selly-authen:
     build:
       context: ./selly_authenticate_app
@@ -38,8 +38,8 @@ networks:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=mysqlpassword
-networks:
-      - mynetwork
+    networks:
+          - mynetwork
   art-info-selly:
     build: 
       context: ./getArticleFromSelly/getArtFromSelly
@@ -54,7 +54,7 @@ networks:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=mysqlpassword
-networks:
-      - mynetwork
+    networks:
+          - mynetwork
 networks:
   mynetwork:
