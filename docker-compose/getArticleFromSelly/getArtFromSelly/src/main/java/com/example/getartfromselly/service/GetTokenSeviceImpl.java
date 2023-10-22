@@ -14,8 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class GetTokenSeviceImpl implements GetSellyTokenService {
-    public static final String GET_CURRENT_TOKEN_URL = "http://localhost:8080/sellyAuthenticate/getCurrentToken";
-    public static final String REFRESH_TOKEN_URL = "http://localhost:8080/sellyAuthenticate/refreshToken";
+    public static final String GET_CURRENT_TOKEN_URL = "http://selly_authen_contain:8080/sellyAuthenticate/getCurrentToken";
+    public static final String REFRESH_TOKEN_URL = "http://selly_authen_contain:8080/sellyAuthenticate/refreshToken";
     // Default header
     final HttpHeaders httpHeaders = new HttpHeaders();
 
