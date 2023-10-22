@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sellyArticle")
 public class GetArtInfoController {
+    // http://localhost:8081/sellyArticle/getArtInfo
     @Autowired
     private GetArticleInfoService getArticleInfoService;
 

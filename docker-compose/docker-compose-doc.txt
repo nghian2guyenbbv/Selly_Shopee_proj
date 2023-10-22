@@ -21,3 +21,12 @@ primary key (id)
 -- 
 INSERT INTO USER_AUTHENTICATE (USER_NAME, PASSWORD, TOKEN) VALUES ('+84586099640', '123456', '12313DSDASDSD');  
 	
+-- delete all container:
+
+docker rm mysql_contain
+docker rm redis_contain
+docker rm selly_authen_contain
+docker rm art-info-selly-container
+
+docker rmi docker-compose-selly-authen
+docker rmi docker-compose-art-info-selly

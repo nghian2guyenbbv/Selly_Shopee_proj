@@ -57,8 +57,8 @@ public class GetTokenSeviceImpl implements GetSellyTokenService {
 
     @Override
     public Token refreshToken() {
-        ResponseEntity<Token> rereshedToken = restTemplate.exchange(REFRESH_TOKEN_URL, HttpMethod.POST, getLoginEntity(getUserLogin()), Token.class);
-        System.out.println("rereshedToken.getBody(): "+rereshedToken.getBody());
-        return rereshedToken.getBody();
+        ResponseEntity<Token> rereshedTokenBody = restTemplate.exchange(REFRESH_TOKEN_URL, HttpMethod.POST, getLoginEntity(getUserLogin()), Token.class);
+        System.out.println("rereshedTokenBody.getBody(): "+rereshedTokenBody.getBody());
+        return rereshedTokenBody.getBody();
     }
 }
