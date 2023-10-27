@@ -13,7 +13,7 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql_contain
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=caching_sha2_password
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=mysqlpassword

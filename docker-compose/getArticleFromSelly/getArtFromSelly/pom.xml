@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>getArtFromSelly</artifactId>
+    <artifactId>get_art_from_selly.jar</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>getArtFromSelly</name>
     <description>getArtFromSelly</description>
