@@ -1,22 +1,20 @@
--- create USER_AUTHENTICATE table
-CREATE TABLE USER_AUTHENTICATE (
-ID int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
-USER_NAME VARCHAR(255),
-PASSWORD VARCHAR(255),
-TOKEN VARCHAR(255)
-);
+create table user_authenticate (
+id int not null auto_increment  primary key,
+user_name varchar(255),
+password varchar(255),
+token varchar(255)
+)
 
--- INSERT USER AUTHENTICATE DATA
-INSERT INTO USER_AUTHENTICATE (USER_NAME, PASSWORD, TOKEN) VALUES ('+84586099640', '123456', '12313DSDASDSD');
---- INSERT SELLY TABLE
-CREATE TABLE ARTICLE_SELLY (
-ID INT NOT NULL AUTO_INCREMENT  PRIMARY KEY,
-PRODUCT_NAME VARCHAR(255),
-DESCRIPTION VARCHAR(255)
-);
+insert into user_authenticate (user_name, password, token) values ('+84586099640', '123456', '12313dsdasdsd')
 
-CREATE TABLE PRODUCT_PHOTO_URL(
-PRODUCT_PHOTO_ID INT NOT NULL AUTO_INCREMENT  PRIMARY KEY,
-PRODUCT_ID VARCHAR(255),
-PHOTO_URL VARCHAR(255)
-);
+create table article_selly (
+id int not null auto_increment  primary key,
+product_name varchar(255),
+description varchar(255)
+)
+
+create table product_photo_url(
+product_photo_id int not null auto_increment  primary key,
+product_id varchar(255),
+photo_url varchar(255)
+)
