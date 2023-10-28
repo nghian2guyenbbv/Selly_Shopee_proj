@@ -22,15 +22,16 @@ public class ArticleInfo {
     @JsonIgnore
     public ArticleInfoDto toArtInfoDto() {
         List<Product> lisPro = this.getData().getProducts();
-        List<SellyProduct> lisSellyPro = lisPro.stream().map(pr -> {
+        List<SellyProduct> listSellyPro = lisPro.stream().map(pr -> {
             SellyProduct sellyProduct = new SellyProduct();
             sellyProduct.setName(pr.getName());
+            sellyProduct.setDescription(pr.getShareDesc());
             List<String> listPhotoUrl = pr.getPhotos().stream().map(Photo::getDimentions).map(dim -> Optional.ofNullable(dim).map(Dimention::getMd).orElse(null))
                     .map(md -> Optional.ofNullable(md).map(MD::getUrl).orElse(null)).filter(Objects::nonNull).collect(Collectors.toList());
             sellyProduct.setListPhotoUrl(listPhotoUrl);
             return sellyProduct;
         }).collect(Collectors.toList());
-        return ArticleInfoDto.builder().sellyPros(lisSellyPro).build();
+        return ArticleInfoDto.builder().sellyPros(listSellyPro).build();
 
 
     }

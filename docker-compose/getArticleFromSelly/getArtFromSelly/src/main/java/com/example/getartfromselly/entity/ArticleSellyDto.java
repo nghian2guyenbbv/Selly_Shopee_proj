@@ -1,9 +1,20 @@
 package com.example.getartfromselly.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="ARTICLE_SELLY")
 public class ArticleSellyDto {
     @Id
@@ -13,6 +24,7 @@ public class ArticleSellyDto {
     private String productName;
     @Column(name="DESCRIPTION")
     private String description;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "articleSelly")
     private List<ProductPhotoUrlDto> productUrl;
 }

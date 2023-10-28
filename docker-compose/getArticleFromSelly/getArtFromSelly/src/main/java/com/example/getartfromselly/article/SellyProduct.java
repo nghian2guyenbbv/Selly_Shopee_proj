@@ -9,5 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 public class SellyProduct {
     private String name;
+    private String description;
     private List<String> listPhotoUrl;
 }
