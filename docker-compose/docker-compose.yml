@@ -35,7 +35,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mynetwork:3306/mysql
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=mysqlpassword
     networks:
@@ -51,9 +51,11 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mynetwork:3306/mysql
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=mysqlpassword
+      - AUTHEN_CURRENT_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/getCurrentToken
+      - AUTHEN_REFRESH_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/refreshToken
     networks:
           - mynetwork
 networks:
