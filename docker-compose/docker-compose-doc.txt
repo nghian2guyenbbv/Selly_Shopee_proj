@@ -19,3 +19,5 @@ docker rmi docker-compose-art-info-selly
 docker rmi docker-compose-selly-authen     
 docker rmi mysql                           
 docker rmi redis                           
+
+rm -rf .mysql
