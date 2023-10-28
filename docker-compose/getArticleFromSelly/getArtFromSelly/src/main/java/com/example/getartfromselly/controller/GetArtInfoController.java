@@ -24,7 +24,7 @@ public class GetArtInfoController {
 
     @PostMapping("/getArtInfo")
     public ArticleInfoDto getArticleInfoWithKeyWord(@RequestBody GetArtWithKeyWordRequest getArtWithKeyWordRequest) {
-        ArticleInfoDto artInfo = getArticleInfoService.getArticleInfoFromSelly(getArtWithKeyWordRequest.getKeyWord()).orElse(null);
+        ArticleInfoDto artInfo = getArticleInfoService.getArticleInfoFromSelly(getArtWithKeyWordRequest).orElse(null);
         ArticleSellyDto articleSellyDto = new ArticleSellyDto();
         articleSellyRepository.save(articleSellyDto);
         return artInfo;

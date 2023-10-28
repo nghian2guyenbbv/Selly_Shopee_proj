@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>get_art_from_selly.jar</artifactId>
+    <artifactId>get_art_from_selly</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>getArtFromSelly</name>
     <description>getArtFromSelly</description>
@@ -44,7 +44,6 @@
     </dependencies>
 
     <build>
-        <finalName>get_art_from_selly</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

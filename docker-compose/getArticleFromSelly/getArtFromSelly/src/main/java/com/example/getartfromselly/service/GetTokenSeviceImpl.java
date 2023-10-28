@@ -1,22 +1,23 @@
 package com.example.getartfromselly.service;
 
 import com.example.getartfromselly.dto.SellyLoginDto;
-import com.example.getartfromselly.login.token.Token;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class GetTokenSeviceImpl implements GetSellyTokenService {
-    public static final String GET_CURRENT_TOKEN_URL = "http://selly_authen_contain:8080/sellyAuthenticate/getCurrentToken";
-    public static final String REFRESH_TOKEN_URL = "http://selly_authen_contain:8080/sellyAuthenticate/refreshToken";
-    // Default header
+    @Value("${authen.current.token.url}")
+    private String GET_CURRENT_TOKEN_URL;
+
+    @Value("${authen.refresh.token.url}")
+    private String GET_REFRESH_TOKEN_URL;
     final HttpHeaders httpHeaders = new HttpHeaders();
 
     private HttpHeaders getDefaultHeader() {
@@ -25,18 +26,7 @@ public class GetTokenSeviceImpl implements GetSellyTokenService {
         return httpHeaders;
     }
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public class SellyUserLogin {
-        @JsonProperty("userName")
-        String userName;
-        @JsonProperty("passWord")
-        String passWord;
-    }
-
-    private HttpEntity getLoginEntity(SellyUserLogin sellyUser) {
+    private HttpEntity getLoginEntity(SellyLoginDto sellyUser) {
         SellyLoginDto body = SellyLoginDto.builder().userName(sellyUser.getUserName()).passWord(sellyUser.getPassWord()).build();
         return new HttpEntity(body, httpHeaders);
 
@@ -45,20 +35,19 @@ public class GetTokenSeviceImpl implements GetSellyTokenService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private SellyUserLogin getUserLogin (){
-        return new SellyUserLogin("+84586099640", "123456");
-    }
 
     @Override
-    public Token getCurrentToken() {
-        ResponseEntity<Token> currentToken = restTemplate.exchange(GET_CURRENT_TOKEN_URL, HttpMethod.POST, getLoginEntity(getUserLogin()), Token.class);
+    public String getCurrentToken(SellyLoginDto sellyUserLogin) {
+        ResponseEntity<String> currentToken = restTemplate.exchange(GET_CURRENT_TOKEN_URL, HttpMethod.POST,
+            getLoginEntity(sellyUserLogin), String.class);
         return currentToken.getBody();
     }
 
     @Override
-    public Token refreshToken() {
-        ResponseEntity<Token> rereshedTokenBody = restTemplate.exchange(REFRESH_TOKEN_URL, HttpMethod.POST, getLoginEntity(getUserLogin()), Token.class);
-        System.out.println("rereshedTokenBody.getBody(): "+rereshedTokenBody.getBody());
+    public String refreshToken(SellyLoginDto sellyLoginDto) {
+        ResponseEntity<String> rereshedTokenBody = restTemplate.exchange(GET_REFRESH_TOKEN_URL, HttpMethod.POST,
+            getLoginEntity(sellyLoginDto), String.class);
         return rereshedTokenBody.getBody();
     }
+
 }

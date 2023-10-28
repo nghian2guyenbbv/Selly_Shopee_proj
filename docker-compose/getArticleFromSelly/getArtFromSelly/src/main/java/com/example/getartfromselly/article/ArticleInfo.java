@@ -9,11 +9,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleInfo {
+
+    private String actions;
 
 
     @JsonIgnore
@@ -28,44 +31,7 @@ public class ArticleInfo {
             return sellyProduct;
         }).collect(Collectors.toList());
         return ArticleInfoDto.builder().sellyPros(lisSellyPro).build();
-    }
 
-    @Data
-    public class ProductData{
-        @JsonProperty("products")
-        private List<Product> products;
-        private Price price;
-
-        /*@Data
-        public class Product{
-            private String name;
-            private List<Photo> photos;
-
-            @Data
-            public class Photo{
-                private String name;
-                @JsonProperty("dimensions")
-                private Dimention dimentions;
-
-                @Data
-                public class Dimention{
-                    private MD md;
-
-                    @Data
-                    public class MD{
-                        private String url;
-                    }
-                }
-
-            }
-
-        }*/
-
-        @Data
-        public class Price{
-            private long maximum;
-            private long profit;
-        }
 
     }
 

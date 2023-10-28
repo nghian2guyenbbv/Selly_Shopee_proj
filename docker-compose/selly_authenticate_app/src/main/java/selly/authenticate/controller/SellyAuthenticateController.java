@@ -1,6 +1,5 @@
 package selly.authenticate.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +14,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/sellyAuthenticate")
-@Slf4j
 public class SellyAuthenticateController {
     private static final String NO_TOKEN = "NO_TOKEN";
 

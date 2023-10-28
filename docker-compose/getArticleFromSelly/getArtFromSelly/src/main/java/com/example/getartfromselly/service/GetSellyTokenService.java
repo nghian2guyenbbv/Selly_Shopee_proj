@@ -1,8 +1,8 @@
 package com.example.getartfromselly.service;
 
-import com.example.getartfromselly.login.token.Token;
+import com.example.getartfromselly.dto.SellyLoginDto;
 
 public interface GetSellyTokenService {
-   Token getCurrentToken();
-   Token refreshToken();
+   String getCurrentToken(SellyLoginDto sellyLoginDto);
+   String refreshToken(SellyLoginDto sellyLoginDto);
 }
