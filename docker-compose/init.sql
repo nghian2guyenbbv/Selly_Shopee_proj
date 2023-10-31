@@ -12,7 +12,7 @@ insert into user_authenticate (user_name, password, token) values ('+84586099640
 create table article_selly (
 id int not null auto_increment  primary key,
 product_name varchar(255),
-description varchar(255)
+description varchar(21844)
 );
 
 create table product_photo_url(
