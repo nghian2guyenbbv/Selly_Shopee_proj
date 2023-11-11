@@ -27,6 +27,9 @@ public class ArticleSellyDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int product_selly_id;
+
+    @Column(name = "PRODUCT_ID")
+    private String productId;
     @Column(name="PRODUCT_NAME")
     private String productName;
     @Column(name="DESCRIPTION")

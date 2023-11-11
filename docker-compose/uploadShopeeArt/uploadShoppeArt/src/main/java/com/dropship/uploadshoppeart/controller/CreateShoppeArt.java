@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class CreateShoppeArt {
   @Autowired
   private ShopeeArticleService shopeeArticleService;
+
   @PostMapping("/create-article")
-  public void createShoppeArt(KeyWord artType){
+  public void createShoppeArt(KeyWord artType) {
     shopeeArticleService.createArticle(artType.getKeyWord());
   }
 }

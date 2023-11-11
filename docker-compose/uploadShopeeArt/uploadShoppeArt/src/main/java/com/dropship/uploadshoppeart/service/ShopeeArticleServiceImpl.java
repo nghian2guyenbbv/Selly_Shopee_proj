@@ -36,7 +36,7 @@ public class ShopeeArticleServiceImpl extends CommonClient implements ShopeeArti
     // Call sellyService get article save db
     sellySerice.getSellyArt(artType);
     // get Article from db
-    //List<ShoppeArticle> shoppeArt = getAllArtFromDb(artType);
+    List<ShoppeArticle> shoppeArt = getAllArtFromDb(artType);
    //Authenticate shopee getToken
     // Call shoppee create articles
     //for (ShoppeArticle shoppeArticle : shoppeArt) {
