@@ -11,8 +11,9 @@ insert into user_authenticate (user_name, password, token) values ('+84586099640
 
 create table article_selly (
 id int not null auto_increment  primary key,
+product_id varchar(255),
 product_name varchar(255),
-ARTICLE_TYPE varchar(255),
+article_type varchar(255),
 description text
 );
 

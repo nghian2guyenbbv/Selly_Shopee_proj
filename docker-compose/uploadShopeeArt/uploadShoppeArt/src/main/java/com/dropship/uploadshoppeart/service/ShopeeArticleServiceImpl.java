@@ -6,6 +6,7 @@ import com.dropship.uploadshoppeart.dto.ArticleSellyDto;
 import com.dropship.uploadshoppeart.repo.ArticleSellyRepo;
 import com.dropship.uploadshoppeart.request.CreateArtShopeeRq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,8 +20,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ShopeeArticleServiceImpl extends CommonClient implements ShopeeArticleService {
- // @Value("shopee.url.createArt")
-  private String CREATE_SHOPPE_ART_URL = "https://banhang.shopee.vn/api/v3/product/create_product_info";
+  @Value("${shopee.url.createArt}")
+  private String CREATE_SHOPPE_ART_URL;
   @Autowired
   private SellySerice sellySerice;
   @Autowired
@@ -33,15 +34,15 @@ public class ShopeeArticleServiceImpl extends CommonClient implements ShopeeArti
   public List<String> createArticle(String artType) {
     List<String> shopeeArtIds = new ArrayList<>();
     // Call sellyService get article save db
-    //sellySerice.getSellyArt(artType);
+    sellySerice.getSellyArt(artType);
     // get Article from db
     //List<ShoppeArticle> shoppeArt = getAllArtFromDb(artType);
    //Authenticate shopee getToken
     // Call shoppee create articles
     //for (ShoppeArticle shoppeArticle : shoppeArt) {
-    ShoppeArticle shoppeArticle = ShoppeArticle.builder().artName("tui ao nu").description("tui ao nu").build();
+    /*ShoppeArticle shoppeArticle = ShoppeArticle.builder().artName("tui ao nu").description("tui ao nu").build();
      String shoppeArtId =  createShoppeArt(shoppeArticle);
-      shopeeArtIds.add(shoppeArtId);
+      shopeeArtIds.add(shoppeArtId);*/
     //}
     return shopeeArtIds;
   }
@@ -60,7 +61,7 @@ public class ShopeeArticleServiceImpl extends CommonClient implements ShopeeArti
   public List<ShoppeArticle> getAllArtFromDb(String artType) {
     List<ArticleSellyDto> sellyArts = articleSellyRepo.findArticleSellyDtosByArticleType(artType);
     return sellyArts.stream().map(sellyArt->{
-      return ShoppeArticle.builder().artName(sellyArt.getProductName()).price(1000000.00)
+      return ShoppeArticle.builder().artName(sellyArt.getProductName()).price(sellyArt.getPrice())
           .description(sellyArt.getDescription()).build();
     }).collect(Collectors.toList());
   }
