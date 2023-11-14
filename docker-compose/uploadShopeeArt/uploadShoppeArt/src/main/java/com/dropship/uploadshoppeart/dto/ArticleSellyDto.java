@@ -26,7 +26,7 @@ import java.util.List;
 public class ArticleSellyDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_selly_id;
+    private int id;
 
     @Column(name = "PRODUCT_ID")
     private String productId;
@@ -40,6 +40,4 @@ public class ArticleSellyDto {
 
     @Column(name="ARTICLE_PRICE")
     private double price;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "articleSelly")
-    private List<ProductPhotoUrlDto> productUrl;
 }

@@ -30,7 +30,4 @@ public class ProductPhotoUrlDto {
     private int productId;
     @Column(name="PHOTO_URL")
     private String photoUrl;
-    @ManyToOne
-    @JoinColumn(name = "product_selly_id")
-    private ArticleSellyDto articleSelly;
 }

@@ -39,11 +39,11 @@ public class ShopeeArticleServiceImpl extends CommonClient implements ShopeeArti
     List<ShoppeArticle> shoppeArt = getAllArtFromDb(artType);
    //Authenticate shopee getToken
     // Call shoppee create articles
-    //for (ShoppeArticle shoppeArticle : shoppeArt) {
-    /*ShoppeArticle shoppeArticle = ShoppeArticle.builder().artName("tui ao nu").description("tui ao nu").build();
+    for (ShoppeArticle shoppeArticle : shoppeArt) {
+    //ShoppeArticle shoppeArticle = ShoppeArticle.builder().artName("tui ao nu").description("tui ao nu").build();
      String shoppeArtId =  createShoppeArt(shoppeArticle);
-      shopeeArtIds.add(shoppeArtId);*/
-    //}
+      shopeeArtIds.add(shoppeArtId);
+    }
     return shopeeArtIds;
   }
 
@@ -68,8 +68,8 @@ public class ShopeeArticleServiceImpl extends CommonClient implements ShopeeArti
 
   @Override
   public String createShoppeArt(ShoppeArticle shopeeArticle) {
-    ResponseEntity<String> createShopeeArtRp =  restTemplate.exchange(CREATE_SHOPPE_ART_URL, HttpMethod.POST, getCreateArtEntity(shopeeArticle), String.class);
-  System.out.println("createShopeeArtRp"+createShopeeArtRp);
+    ResponseEntity<String> createShopeeArtRp = restTemplate.exchange(CREATE_SHOPPE_ART_URL, HttpMethod.POST, getCreateArtEntity(shopeeArticle), String.class);
+    System.out.println("createShopeeArtRp" + createShopeeArtRp);
     return null;
   }
 
