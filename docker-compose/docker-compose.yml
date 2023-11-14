@@ -24,39 +24,57 @@ services:
       - "3306:3306"
     networks:
           - mynetwork
-  # selly-authen:
-  #   build:
-  #     context: ./selly_authenticate_app
-  #     dockerfile: Dockerfile
-  #   depends_on:
-  #     - mysql
-  #   container_name: selly_authen_contain
-  #   restart: always
-  #   ports:
-  #     - "8080:8080"
-  #   environment:
-  #     - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
-  #     - SPRING_DATASOURCE_USERNAME=root
-  #     - SPRING_DATASOURCE_PASSWORD=mysqlpassword
-  #   networks:
-  #         - mynetwork
-  # art-info-selly:
-  #   build: 
-  #     context: ./getArticleFromSelly/getArtFromSelly
-  #     dockerfile: Dockerfile
-  #   depends_on:
-  #     - mysql
-  #   container_name: art-info-selly-container
-  #   restart: always
-  #   ports:
-  #     - "8081:8081"
-  #   environment:
-  #     - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
-  #     - SPRING_DATASOURCE_USERNAME=root
-  #     - SPRING_DATASOURCE_PASSWORD=mysqlpassword
-  #     - AUTHEN_CURRENT_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/getCurrentToken
-  #     - AUTHEN_REFRESH_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/refreshToken
-  #   networks:
-  #         - mynetwork
+  selly-authen:
+    build:
+      context: ./selly_authenticate_app
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    container_name: selly_authen_contain
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=mysqlpassword
+    networks:
+          - mynetwork
+  art-info-selly:
+    build: 
+      context: ./getArticleFromSelly/getArtFromSelly
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    container_name: art-info-selly-container
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=mysqlpassword
+      - AUTHEN_CURRENT_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/getCurrentToken
+      - AUTHEN_REFRESH_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/refreshToken
+    networks:
+          - mynetwork
+  shoppe-push-art:
+    build: 
+      context: ./uploadShopeeArt/uploadShoppeArt
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    container_name: upload-shopee-upload-art-container
+    restart: always
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=mysqlpassword
+      - AUTHEN_CURRENT_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/getCurrentToken
+      - AUTHEN_REFRESH_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/refreshToken
+    networks:
+          - mynetwork
 networks:
   mynetwork:
