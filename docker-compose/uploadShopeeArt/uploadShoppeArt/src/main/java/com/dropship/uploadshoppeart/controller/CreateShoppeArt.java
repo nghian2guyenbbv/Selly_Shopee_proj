@@ -15,6 +15,6 @@ public class CreateShoppeArt {
 
   @PostMapping("/create-article")
   public void createShoppeArt(KeyWord artType) {
-    shopeeArticleService.createArticle(artType.getKeyWord());
+    shopeeArticleService.createArticle(artType.getKeyWord(), artType.getLimit());
   }
 }

@@ -5,7 +5,7 @@ import com.dropship.uploadshoppeart.article.ShoppeArticle;
 import java.util.List;
 
 public interface ShopeeArticleService {
-  public List<String> createArticle(String artType);
+  public List<String> createArticle(String artType, int limit);
 
   public boolean deleteArticle();
 

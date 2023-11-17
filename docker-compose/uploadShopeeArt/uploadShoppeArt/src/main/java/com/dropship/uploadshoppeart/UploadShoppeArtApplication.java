@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class UploadShoppeArtApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(UploadShoppeArtApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(UploadShoppeArtApplication.class, args);
+  }
 
 }
