@@ -14,7 +14,7 @@ id int not null auto_increment  primary key,
 product_id varchar(255),
 product_name varchar(255),
 article_type varchar(255),
-article_price double(7,5),
+article_price bigint,
 description text
 );
 
