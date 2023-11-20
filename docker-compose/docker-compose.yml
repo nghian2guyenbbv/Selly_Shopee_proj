@@ -76,6 +76,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=mysqlpassword
       - AUTHEN_CURRENT_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/getCurrentToken
       - AUTHEN_REFRESH_TOKEN_URL=http://selly-authen:8080/sellyAuthenticate/refreshToken
+      - SELLY_GET_ARTICLE_URL=http://art-info-selly:8081/sellyArticle/getArtInfo
     networks:
       - mynetwork
 networks:
