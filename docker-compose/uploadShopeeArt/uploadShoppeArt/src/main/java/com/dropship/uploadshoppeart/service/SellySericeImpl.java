@@ -25,7 +25,7 @@ public class SellySericeImpl extends CommonClient implements SellySerice {
 
   private HttpEntity getSellyArtRequestEntity() {
     return new HttpEntity(GetArtWithKeyWordRequest.builder().keyWord("giay bong ro")
-        .sellyLogin(SellyLoginDto.builder().userName("+84586099640").password("123456").build()).build(),
+        .sellyLogin(SellyLoginDto.builder().userName("+84586099640").passWord("123456").build()).build(),
         getDefaultHeader());
   }
 }

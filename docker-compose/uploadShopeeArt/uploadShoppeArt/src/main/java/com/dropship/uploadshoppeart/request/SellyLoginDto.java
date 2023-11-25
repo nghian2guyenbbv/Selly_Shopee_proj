@@ -7,5 +7,5 @@ import lombok.Data;
 @Builder
 public class SellyLoginDto {
     private String userName;
-    private String password;
+    private String passWord;
 }

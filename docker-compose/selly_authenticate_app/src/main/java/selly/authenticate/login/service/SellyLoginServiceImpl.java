@@ -36,7 +36,7 @@ public class SellyLoginServiceImpl implements SellyLoginService {
 
     @Override
     public Optional<String> getTokenWithUserAndPass(SellyUser sellyUser) {
-        SellyLoginDto body = SellyLoginDto.builder().phone(sellyUser.getUserName()).password(sellyUser.getPassWord()).build();
+        SellyLoginDto body = SellyLoginDto.builder().phone(sellyUser.getUserName()).passWord(sellyUser.getPassWord()).build();
         HttpEntity loginEntity = new HttpEntity(body, getDefaultHeader());
         System.out.println("selly login loginEntity: "+loginEntity.toString());
         String token = Strings.EMPTY;
