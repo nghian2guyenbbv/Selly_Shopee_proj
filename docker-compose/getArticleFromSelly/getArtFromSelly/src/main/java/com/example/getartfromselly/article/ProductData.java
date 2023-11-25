@@ -13,7 +13,9 @@ import java.util.List;
 public class ProductData {
   @JsonProperty("products")
   private List<Product> products;
+/*
   private Price price;
+*/
 
         /*@Data
         public class Product{

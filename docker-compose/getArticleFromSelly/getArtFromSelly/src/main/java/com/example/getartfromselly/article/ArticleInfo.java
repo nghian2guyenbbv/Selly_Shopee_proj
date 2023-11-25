@@ -26,6 +26,7 @@ public class ArticleInfo {
             SellyProduct sellyProduct = new SellyProduct();
             sellyProduct.setName(pr.getName());
             sellyProduct.setDescription(pr.getShareDesc());
+            sellyProduct.setPrice(pr.getPrice().getMaximum());
             List<String> listPhotoUrl = pr.getPhotos().stream().map(Photo::getDimentions).map(dim -> Optional.ofNullable(dim).map(Dimention::getMd).orElse(null))
                     .map(md -> Optional.ofNullable(md).map(MD::getUrl).orElse(null)).filter(Objects::nonNull).collect(Collectors.toList());
             sellyProduct.setListPhotoUrl(listPhotoUrl);

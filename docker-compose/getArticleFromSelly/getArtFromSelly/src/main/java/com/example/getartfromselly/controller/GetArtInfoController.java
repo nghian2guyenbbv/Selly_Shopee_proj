@@ -6,6 +6,7 @@ import com.example.getartfromselly.entity.ArticleSellyDto;
 import com.example.getartfromselly.entity.ProductPhotoUrlDto;
 import com.example.getartfromselly.repo.ArticleSellyRepository;
 import com.example.getartfromselly.service.GetArticleInfoService;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,34 +20,42 @@ import java.util.concurrent.atomic.AtomicReference;
 @RestController
 @RequestMapping("/sellyArticle")
 public class GetArtInfoController {
-    // http://localhost:8081/sellyArticle/getArtInfo
-    @Autowired
-    private GetArticleInfoService getArticleInfoService;
+  // http://localhost:8081/sellyArticle/getArtInfo
+/*
+  {
+    "keyWord":"giay bong ro",
+      "sellyLogin":{
+    "userName":"+84586099640",
+        "passWord":"123456"
+  }
+  }*/
+  @Autowired
+  private GetArticleInfoService getArticleInfoService;
 
-    @Autowired
-    private ArticleSellyRepository articleSellyRepository;
+  @Autowired
+  private ArticleSellyRepository articleSellyRepository;
 
+  @PostMapping("/getArtInfo")
+  public ArticleInfoDto getArticleInfoWithKeyWord(@RequestBody GetArtWithKeyWordRequest getArtWithKeyWordRequest) {
+    ArticleInfoDto artInfo = getArticleInfoService.getArticleInfoFromSelly(getArtWithKeyWordRequest).orElse(null);
+    List<ProductPhotoUrlDto> listProductPhoto = new ArrayList<ProductPhotoUrlDto>();
+    AtomicReference<String> description = new AtomicReference<>(" ");
+    AtomicReference<String> productName = new AtomicReference<>(" ");
+    AtomicReference<Double> productPrice = new AtomicReference<>(NumberUtils.DOUBLE_ZERO);
 
-    @PostMapping("/getArtInfo")
-    public ArticleInfoDto getArticleInfoWithKeyWord(@RequestBody GetArtWithKeyWordRequest getArtWithKeyWordRequest) {
-        ArticleInfoDto artInfo = getArticleInfoService.getArticleInfoFromSelly(getArtWithKeyWordRequest).orElse(null);
-        List<ProductPhotoUrlDto> listProductPhoto = new ArrayList<ProductPhotoUrlDto>();
-        AtomicReference<String> description = new AtomicReference<>(" ");
-        AtomicReference<String> productName = new AtomicReference<>(" ");
-
-        artInfo.getSellyPros().forEach(pro-> {
-            productName.set(pro.getName());
-            pro.getListPhotoUrl().forEach(photo -> {
-                ProductPhotoUrlDto proDto = ProductPhotoUrlDto.builder()
-                    .productId(1234).photoUrl(photo)
-                    .build();
-                listProductPhoto.add(proDto);
-                description.set(pro.getDescription());
-            });
-            ArticleSellyDto articleSellyDto = ArticleSellyDto.builder()
-                .productName(productName.get()).description(description.get()).productUrl(listProductPhoto).articleType(getArtWithKeyWordRequest.getKeyWord()).build();
-            articleSellyRepository.save(articleSellyDto);
-        });
-        return artInfo;
-    }
+    artInfo.getSellyPros().forEach(pro -> {
+      productName.set(pro.getName());
+      pro.getListPhotoUrl().forEach(photo -> {
+        ProductPhotoUrlDto proDto = ProductPhotoUrlDto.builder().productId(1234).photoUrl(photo).build();
+        listProductPhoto.add(proDto);
+        description.set(pro.getDescription());
+        productPrice.set(pro.getPrice());
+      });
+      ArticleSellyDto articleSellyDto = ArticleSellyDto.builder().productName(productName.get())
+          .description(description.get()).productUrl(listProductPhoto)
+          .articleType(getArtWithKeyWordRequest.getKeyWord()).articlePrice(productPrice.get()).build();
+      articleSellyRepository.save(articleSellyDto);
+    });
+    return artInfo;
+  }
 }

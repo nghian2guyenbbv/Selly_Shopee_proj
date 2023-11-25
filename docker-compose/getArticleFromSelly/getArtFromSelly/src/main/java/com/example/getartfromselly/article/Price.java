@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Price {
-  private long maximum;
-  private long profit;
+  private double maximum;
+  private double profit;
 }
