@@ -14,21 +14,22 @@ import java.util.Optional;
 @Service
 public class GetArticleInfoServiceImpl implements GetArticleInfoService {
 
-    @Autowired
-    private ArticleServiceCommon articleServiceCommon;
+  @Autowired
+  private ArticleServiceCommon articleServiceCommon;
 
-    @Autowired
-    private GetSellyTokenService getSellyTokenService;
+  @Autowired
+  private GetSellyTokenService getSellyTokenService;
 
-    @Autowired
-    private RestTemplate restTemplate;
+  @Autowired
+  private RestTemplate restTemplate;
 
-    @Override
-    public Optional<ArticleInfoDto> getArticleInfoFromSelly(GetArtWithKeyWordRequest artRequest) {
-        String getToken = getSellyTokenService.refreshToken(artRequest.getSellyLogin());
-        ResponseEntity<ArticleInfo> response = restTemplate.exchange(articleServiceCommon.getArticleInfoUrl(artRequest.getKeyWord()),
-                HttpMethod.GET, articleServiceCommon.getDefautEntityForGetRqWithToken(getToken), ArticleInfo.class);
-        ArticleInfo artInf = response.getBody();
-        return Optional.of(artInf.toArtInfoDto());
-    }
+  @Override
+  public Optional<ArticleInfoDto> getArticleInfoFromSelly(GetArtWithKeyWordRequest artRequest) {
+    String getToken = getSellyTokenService.refreshToken(artRequest.getSellyLogin());
+    ResponseEntity<ArticleInfo> response = restTemplate.exchange(
+        articleServiceCommon.getArticleInfoUrl(artRequest.getKeyWord()), HttpMethod.GET,
+        articleServiceCommon.getDefautEntityForGetRqWithToken(getToken), ArticleInfo.class);
+    ArticleInfo artInf = response.getBody();
+    return Optional.of(artInf.toArtInfoDto());
+  }
 }

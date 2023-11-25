@@ -44,7 +44,7 @@ public class GetArtInfoController {
                 description.set(pro.getDescription());
             });
             ArticleSellyDto articleSellyDto = ArticleSellyDto.builder()
-                .productName(productName.get()).description(description.get()).productUrl(listProductPhoto).build();
+                .productName(productName.get()).description(description.get()).productUrl(listProductPhoto).articleType(getArtWithKeyWordRequest.getKeyWord()).build();
             articleSellyRepository.save(articleSellyDto);
         });
         return artInfo;

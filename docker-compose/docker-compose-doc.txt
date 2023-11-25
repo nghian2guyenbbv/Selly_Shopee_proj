@@ -8,11 +8,13 @@ docker stop   mysql_contain
 docker stop   redis_contain
 docker stop   art-info-selly-container
 docker stop   selly_authen_contain
+docker stop   upload-shopee-upload-art-container
 
 docker rm   mysql_contain
 docker rm   redis_contain
 docker rm   art-info-selly-container
 docker rm   selly_authen_contain
+docker rm  upload-shopee-upload-art-container
 
 
 docker rmi docker-compose-art-info-selly   
