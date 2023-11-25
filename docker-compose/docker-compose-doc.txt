@@ -17,6 +17,7 @@ docker rm   selly_authen_contain
 
 docker rmi docker-compose-art-info-selly   
 docker rmi docker-compose-selly-authen     
+docker rmi docker-compose-shoppe-push-art
 docker rmi mysql                           
 docker rmi redis                           
 
