@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Create article api
+//http://localhost:8083/shopee/create-article
+/*
+    {
+        "keyWord": "giay bong ro"
+        }
+        */
 @RestController
 @RequestMapping(value = "/shopee",  produces = MediaType.APPLICATION_JSON_VALUE,
     consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -21,3 +28,4 @@ public class CreateShoppeArt {
     shopeeArticleService.createArticle(artType.getKeyWord(), artType.getLimit());
   }
 }
+
