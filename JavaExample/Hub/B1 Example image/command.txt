@@ -1,7 +1,0 @@
-# Build images
-# docker build -t demo-app:v1 -f Dockerfile .
-# Run image
-# docker run --name demo-container -it -p 8080:8080 demo-app:v1 
-# docker ps
-
-
