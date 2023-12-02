@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 //http://localhost:8083/shopee/create-article
 /*
     {
-        "keyWord": "giay bong ro"
+        "keyWord": "giay bong ro",
+        "limit": 20
         }
         */
 @RestController
