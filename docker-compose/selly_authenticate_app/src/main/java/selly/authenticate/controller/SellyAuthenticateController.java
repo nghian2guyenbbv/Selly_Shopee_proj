@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import selly.authenticate.login.service.SellyLoginService;
 import selly.authenticate.sellyUser.SellyUser;
+import selly.authenticate.service.GetUserInfoFromAuthenDBService;
 import selly.authenticate.service.UpdateTokenService;
 import selly.authenticate.token.Token;
 
@@ -23,21 +24,27 @@ public class SellyAuthenticateController {
     @Autowired
     private UpdateTokenService updateTokenService;
 
+    @Autowired
+    private GetUserInfoFromAuthenDBService getUserInfoFromAuthenDBService;
+
     @PostMapping("/refreshToken")
     public Token getSellyToken(@RequestBody SellyUser sellyUser) {
-        String tokenWithUser = updateTokenService.getTokenWithUser(sellyUser.getUserName());
+        SellyUser userFromDb = getUserInfoFromAuthenDBService.getSellyUserFromDb();
+        String tokenWithUser = updateTokenService.getTokenWithUser(userFromDb.getUserName());
 
-        Optional<String> sellyToken = sellyLoginService.getTokenWithUserAndPass(sellyUser);
-        sellyToken.ifPresent(sellyTk->{
-            if(!sellyTk.equals(tokenWithUser)){updateTokenService.updateTokenWithUser(sellyUser.getUserName(), sellyTk);}
+        Optional<String> sellyToken = sellyLoginService.getTokenWithUserAndPass(userFromDb);
+        sellyToken.ifPresent(sellyTk -> {
+            if (!sellyTk.equals(tokenWithUser)) {
+                updateTokenService.updateTokenWithUser(userFromDb.getUserName(), sellyTk);
+            }
         });
-        Token token =  Token.builder().user(sellyUser.getUserName()).token(sellyToken.get()).build();
+        Token token = Token.builder().user(userFromDb.getUserName()).token(sellyToken.get()).build();
         //return token.getToken();
         return token;
     }
 
     @PostMapping("/getCurrentToken")
-    public String getTokenFromDb(@RequestBody SellyUser sellyUser){
+    public String getTokenFromDb(@RequestBody SellyUser sellyUser) {
         Optional<String> currentToken = sellyLoginService.getCurrentToken(sellyUser);
         Token token = Token.builder().user(sellyUser.getUserName()).token(currentToken.orElse(NO_TOKEN)).build();
         return token.getToken();
