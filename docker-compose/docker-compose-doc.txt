@@ -24,3 +24,13 @@ docker rmi mysql
 docker rmi redis                           
 
 rm -rf .mysql
+
+
+--- start only mysql image
+docker stop   art-info-selly-container
+docker stop   selly_authen_contain
+docker stop   upload-shopee-upload-art-container
+
+docker rm   art-info-selly-container
+docker rm   selly_authen_contain
+docker rm  upload-shopee-upload-art-container
