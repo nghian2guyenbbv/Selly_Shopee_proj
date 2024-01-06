@@ -14,5 +14,5 @@ http://localhost:8083/shopee/create-article
 
     {
         "keyWord": "giay bong ro",
-        "limit": 20
+        "limit": 5
     }
