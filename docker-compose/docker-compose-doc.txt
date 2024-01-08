@@ -34,3 +34,15 @@ docker stop   upload-shopee-upload-art-container
 docker rm   art-info-selly-container
 docker rm   selly_authen_contain
 docker rm  upload-shopee-upload-art-container
+
+
+--- docker tag and push images
+docker tag docker-compose-shoppe-push-art nghiashinhan96/docker-compose-shoppe-push-art
+docker tag docker-compose-selly-authen nghiashinhan96/docker-compose-selly-authen
+docker tag docker-compose-art-info-selly nghiashinhan96/docker-compose-art-info-selly
+docker tag mysql nghiashinhan96/mysql
+
+docker push nghiashinhan96/docker-compose-shoppe-push-art
+docker push nghiashinhan96/docker-compose-selly-authen
+docker push nghiashinhan96/docker-compose-art-info-selly
+docker push nghiashinhan96/mysql
