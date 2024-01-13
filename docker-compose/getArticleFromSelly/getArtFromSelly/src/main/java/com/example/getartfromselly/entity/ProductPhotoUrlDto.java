@@ -15,16 +15,15 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="PRODUCT_PHOTO_URL")
+@Table(name = "PRODUCT_PHOTO_URL")
 public class ProductPhotoUrlDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_photo_id;
-    @Column(name="PRODUCT_ID")
-    private int productId;
-    @Column(name="PHOTO_URL")
-    private String photoUrl;
-    @ManyToOne
-    @JoinColumn(name = "product_selly_id")
-    private ArticleSellyDto articleSelly;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  @Column(name = "PRODUCT_ID")
+  private int productId;
+  @Column(name = "PRODUCT_NAME")
+  private String productName;
+  @Column(name = "PHOTO_URL")
+  private String photoUrl;
 }

@@ -5,6 +5,7 @@ import com.example.getartfromselly.article.request.GetArtWithKeyWordRequest;
 import com.example.getartfromselly.entity.ArticleSellyDto;
 import com.example.getartfromselly.entity.ProductPhotoUrlDto;
 import com.example.getartfromselly.repo.ArticleSellyRepository;
+import com.example.getartfromselly.repo.ProductPhotoUrlRepository;
 import com.example.getartfromselly.service.GetArticleInfoService;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class GetArtInfoController {
 
   @Autowired
   private ArticleSellyRepository articleSellyRepository;
+  @Autowired
+  private ProductPhotoUrlRepository productPhotoUrlRepo;
 
   @PostMapping("/getArtInfo")
   public ArticleInfoDto getArticleInfoWithKeyWord(@RequestBody GetArtWithKeyWordRequest getArtWithKeyWordRequest) {
@@ -46,15 +49,16 @@ public class GetArtInfoController {
     artInfo.getSellyPros().forEach(pro -> {
       productName.set(pro.getName());
       pro.getListPhotoUrl().forEach(photo -> {
-        ProductPhotoUrlDto proDto = ProductPhotoUrlDto.builder().productId(1234).photoUrl(photo).build();
+        ProductPhotoUrlDto proDto = ProductPhotoUrlDto.builder().productName(pro.getName()).photoUrl(photo).build();
         listProductPhoto.add(proDto);
         description.set(pro.getDescription());
         productPrice.set(pro.getPrice());
       });
       ArticleSellyDto articleSellyDto = ArticleSellyDto.builder().productName(productName.get())
-          .description(description.get()).productUrl(listProductPhoto)
+          .description(description.get())
           .articleType(getArtWithKeyWordRequest.getKeyWord()).articlePrice(productPrice.get()).build();
       articleSellyRepository.save(articleSellyDto);
+      productPhotoUrlRepo.saveAll(listProductPhoto);
     });
     return artInfo;
   }

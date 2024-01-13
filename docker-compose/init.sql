@@ -21,5 +21,6 @@ description text
 create table product_photo_url(
 product_photo_id int not null auto_increment  primary key,
 product_id varchar(255),
+product_name varchar(255),
 photo_url varchar(255)
 );
