@@ -36,7 +36,4 @@ public class ArticleSellyDto {
   private String articleType;
   @Column(name = "ARTICLE_PRICE")
   private Double articlePrice;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "articleSelly")
-  private List<ProductPhotoUrlDto> productUrl;
 }
