@@ -5,10 +5,14 @@ import com.example.getartfromselly.article.request.GetArtWithKeyWordRequest;
 import com.example.getartfromselly.entity.ArticleSellyDto;
 import com.example.getartfromselly.entity.ProductPhotoUrlDto;
 import com.example.getartfromselly.repo.ArticleSellyRepository;
-import com.example.getartfromselly.repo.ProductPhotoUrlRepository;
+import com.example.getartfromselly.repo.ProductPhotoUrlRepo;
 import com.example.getartfromselly.service.GetArticleInfoService;
+import com.example.getartfromselly.service.SellyImageService;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +40,15 @@ public class GetArtInfoController {
   @Autowired
   private ArticleSellyRepository articleSellyRepository;
   @Autowired
-  private ProductPhotoUrlRepository productPhotoUrlRepo;
+  private ProductPhotoUrlRepo productPhotoUrlRepo;
+
+  @Autowired
+  private SellyImageService sellyImageService;
+
+  @GetMapping(value= "/{productName}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public void getImageProduct(@PathVariable("productName") final String productName){
+    sellyImageService.downloadImagesAndRename(productName);
+  }
 
   @PostMapping("/getArtInfo")
   public ArticleInfoDto getArticleInfoWithKeyWord(@RequestBody GetArtWithKeyWordRequest getArtWithKeyWordRequest) {

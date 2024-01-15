@@ -25,9 +25,11 @@ import javax.persistence.Table;
 public class ProductPhotoUrlDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_photo_id;
+    private int id;
     @Column(name="PRODUCT_ID")
     private int productId;
+    @Column(name="PRODUCT_NAME")
+    private String productName;
     @Column(name="PHOTO_URL")
     private String photoUrl;
 }
