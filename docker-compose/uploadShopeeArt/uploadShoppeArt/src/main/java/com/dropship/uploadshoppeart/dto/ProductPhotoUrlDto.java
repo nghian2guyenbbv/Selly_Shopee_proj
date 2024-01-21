@@ -32,4 +32,6 @@ public class ProductPhotoUrlDto {
     private String productName;
     @Column(name="PHOTO_URL")
     private String photoUrl;
+    @Column(name = "SHOPEE_PHOTO_ID")
+    private String shopeePhotoId;
 }

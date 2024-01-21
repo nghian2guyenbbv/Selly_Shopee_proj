@@ -3,12 +3,14 @@ package com.example.getartfromselly.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.SneakyThrows;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Builder
@@ -26,4 +28,6 @@ public class ProductPhotoUrlDto {
   private String productName;
   @Column(name = "PHOTO_URL")
   private String photoUrl;
+  @Column(name = "SHOPEE_PHOTO_ID")
+  private String shopeePhotoId;
 }

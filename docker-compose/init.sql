@@ -22,5 +22,6 @@ create table product_photo_url(
 id int not null auto_increment  primary key,
 product_id varchar(255),
 product_name varchar(255),
-photo_url varchar(255)
+photo_url varchar(255),
+shopee_photo_id varchar(255)
 );

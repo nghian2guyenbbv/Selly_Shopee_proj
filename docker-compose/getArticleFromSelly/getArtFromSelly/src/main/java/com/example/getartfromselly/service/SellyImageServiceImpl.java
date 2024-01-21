@@ -1,6 +1,7 @@
 package com.example.getartfromselly.service;
 
 import com.example.getartfromselly.common.CommonClient;
+import com.example.getartfromselly.common.ImageUtils;
 import com.example.getartfromselly.common.ShopeeImageName;
 import com.example.getartfromselly.repo.ProductPhotoUrlRepo;
 import lombok.NonNull;
@@ -47,16 +48,19 @@ public class SellyImageServiceImpl implements SellyImageService {
     headers.setAccept(Collections.singletonList(MediaType.IMAGE_JPEG));
     RequestCallback requestCallback = restTemplate.httpEntityCallback(null, byte[].class);
     ResponseExtractor<ResponseEntity<byte[]>> responseExtractor = restTemplate.responseEntityExtractor(byte[].class);
+    int index = 0;
     for (String originalUrl : originalUrls) {
       ResponseEntity<byte[]> response = restTemplate.execute(originalUrl, HttpMethod.GET,requestCallback, responseExtractor, headers);
       System.out.println("------");
       if (response.getStatusCode().is2xxSuccessful()) {
         byte[] imageBytes = response.getBody();
         // Process the image bytes as needed
+        ImageUtils.saveImage(imageBytes, productName+"_"+index);
       } else {
         // Handle error
         System.out.println("Error: " + response.getStatusCode());
       }
+      index++;
     }
   }
 }
