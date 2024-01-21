@@ -45,7 +45,7 @@ public class GetArtInfoController {
   @Autowired
   private SellyImageService sellyImageService;
 
-  @GetMapping(value= "/{productName}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value= "/downloadImage/{productName}", produces = MediaType.APPLICATION_JSON_VALUE)
   public void getImageProduct(@PathVariable("productName") final String productName){
     sellyImageService.downloadImagesAndRename(productName);
   }
