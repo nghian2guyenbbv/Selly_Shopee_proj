@@ -50,6 +50,11 @@ public class GetArtInfoController {
     sellyImageService.downloadImagesAndRename(productName);
   }
 
+/*  @GetMapping(value="/syncImageName")
+  public void syncImageNameFromShopee(){
+    shopeeService.syncImageName();
+  }*/
+
   @PostMapping("/getArtInfo")
   public ArticleInfoDto getArticleInfoWithKeyWord(@RequestBody GetArtWithKeyWordRequest getArtWithKeyWordRequest) {
     ArticleInfoDto artInfo = getArticleInfoService.getArticleInfoFromSelly(getArtWithKeyWordRequest).orElse(null);
