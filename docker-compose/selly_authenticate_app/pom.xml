@@ -13,6 +13,11 @@
         <version>2.7.15</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+ <!--   <parent>
+        <groupId>com.dropship</groupId>
+        <artifactId>parent-dropship</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>-->
     <properties>
         <java.version>1.8</java.version>
         <commons-collections4.version>4.1</commons-collections4.version>
@@ -35,7 +40,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
         </dependency>
 
         <!-- <dependency>
