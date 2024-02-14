@@ -25,7 +25,7 @@ public class ProductPhotoUrlDto {
   @Column(name = "PRODUCT_ID")
   private int productId;
   @Column(name = "PRODUCT_NAME")
-  private String productName;
+  public String productName;
   @Column(name = "PHOTO_URL")
   private String photoUrl;
   @Column(name = "SHOPEE_PHOTO_ID")

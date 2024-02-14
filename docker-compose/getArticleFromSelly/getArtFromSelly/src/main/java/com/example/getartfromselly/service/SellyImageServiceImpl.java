@@ -3,6 +3,7 @@ package com.example.getartfromselly.service;
 import com.example.getartfromselly.common.CommonClient;
 import com.example.getartfromselly.common.ImageUtils;
 import com.example.getartfromselly.common.ShopeeImageName;
+import com.example.getartfromselly.entity.ProductPhotoUrlDto;
 import com.example.getartfromselly.repo.ProductPhotoUrlRepo;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,15 @@ public class SellyImageServiceImpl implements SellyImageService {
 
   }
 
+  public void getAllImages(int limit){
+    List<ProductPhotoUrlDto> productNames = productPhotoUrlRepo.findAllLimitList(limit);
+    for (ProductPhotoUrlDto product : productNames) {
+      List<String> originalUrls = productPhotoUrlRepo.getListPhotoUrlByProductName(product.productName);
+    }
+  }
+
   @Override
-  public void downloadImagesAndRename(String productName) {
+  public void downloadImagesAndRename(@NonNull String productName) {
     @NonNull List<String> originalUrls = productPhotoUrlRepo.getListPhotoUrlByProductName(productName);
     HttpHeaders headers = CommonClient.getDefaultHeader();
     headers.setAccept(Collections.singletonList(MediaType.IMAGE_JPEG));

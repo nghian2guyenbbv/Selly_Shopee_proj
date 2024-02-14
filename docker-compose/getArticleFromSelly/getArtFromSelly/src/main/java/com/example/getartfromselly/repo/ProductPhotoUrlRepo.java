@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface ProductPhotoUrlRepo extends JpaRepository<ProductPhotoUrlDto, Long> {
+  public List<ProductPhotoUrlDto> findAllLimitList(int limit);
   public List<ProductPhotoUrlDto> findProductPhotoUrlDtosByProductName(String productName);
 
   default List<String> getListPhotoUrlByProductName(String productName) {
